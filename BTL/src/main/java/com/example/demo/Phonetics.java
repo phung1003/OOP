@@ -6,7 +6,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Phonetics {
-    String audio;
+    String audio = "null";
     String text;
 
     public String getText() {

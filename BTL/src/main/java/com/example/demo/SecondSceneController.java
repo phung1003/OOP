@@ -24,11 +24,28 @@ public class SecondSceneController {
     private TextArea source;
     @FXML
     private TextArea des;
+    @FXML
+    private Label s;
+    @FXML
+    private Label d;
 
     @FXML
     public void Translate() throws IOException {
-        des.setText(Json.callTranslate(source.getText(), true));
+        if (s.getText().equals("EN")) {
+            des.setText(Json.callTranslate(source.getText(), true));
+        } else {
+            des.setText(Json.callTranslate(source.getText(), false));
+        }
     }
+
+    @FXML
+    public void Change() throws IOException {
+        String temp = s.getText();
+        s.setText(d.getText());
+        d.setText(temp);
+    }
+
+
 
 
     @FXML

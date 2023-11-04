@@ -103,13 +103,12 @@ public class Json {
     }
 
     public static void main(String[] args) throws IOException {
-        WordModel[] wordModels = Json.callApi("hello");
-        for (int i = 0; i < wordModels[0].phonetics.size(); i++) {
-            System.out.println(wordModels[0].phonetics.get(i).audio);
+        WordModel[] wordModels = Json.callApi("dog");
+        for (int i = 0; i < wordModels[0].meanings.get(0).definitions.size(); i++) {
+            System.out.println(wordModels[0].meanings.get(0).definitions.get(i).definition);
+            System.out.println(wordModels[0].meanings.get(0).definitions.get(i).example);
+
         }
-        String s = Json.callTranslate("Anh thật sự ngu ngốc, ăn thịt bò chấm ớt chinsu",false);
-        System.out.println(s);
-        System.out.println(Json.callTranslate("Asian parent when their children have B instead of A", true));
 
     }
 

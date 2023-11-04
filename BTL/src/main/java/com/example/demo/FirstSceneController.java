@@ -45,4 +45,14 @@ public class FirstSceneController {
         stage.show();
 
     }
+
+    @FXML
+    protected void changeScreen2(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ThirdScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

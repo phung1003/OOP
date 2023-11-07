@@ -3,6 +3,7 @@ module com.example.demo {
     requires javafx.fxml;
     requires javafx.web;
 
+
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -10,6 +11,8 @@ module com.example.demo {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires com.fasterxml.jackson.databind;
+    requires java.desktop;
+    requires javafx.media;
 
 
     opens com.example.demo to javafx.fxml;

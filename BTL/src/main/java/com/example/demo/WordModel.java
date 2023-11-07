@@ -1,5 +1,6 @@
 package com.example.demo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.Nulls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,21 @@ public class WordModel {
 
     public void setMeanings(List<Meanings> meanings) {
         this.meanings = meanings;
+    }
+
+    public void removeDuplicates()
+    {
+        ArrayList<Phonetics> newList = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
+
+
+        for (Phonetics element : phonetics) {
+            if (!temp.contains(element.text)) {
+                newList.add(element);
+                temp.add(element.text);
+            }
+        }
+        phonetics = newList;
     }
 
     @Override

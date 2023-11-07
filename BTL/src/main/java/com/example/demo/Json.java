@@ -1,15 +1,13 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.net.ssl.HttpsURLConnection;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Json {
@@ -26,6 +24,7 @@ public class Json {
                 s.append(scanner.nextLine());
             }
             ObjectMapper objectMapper = new ObjectMapper();
+
 
             /* parse json*/
             WordModel[] wordModels = objectMapper.readValue(String.valueOf(s), new TypeReference<WordModel[]>() {
@@ -104,10 +103,12 @@ public class Json {
 
     public static void main(String[] args) throws IOException {
         WordModel[] wordModels = Json.callApi("dog");
-        for (int i = 0; i < wordModels[0].meanings.get(0).definitions.size(); i++) {
-            System.out.println(wordModels[0].meanings.get(0).definitions.get(i).definition);
-            System.out.println(wordModels[0].meanings.get(0).definitions.get(i).example);
-
+        wordModels[0].removeDuplicates();
+        System.out.println(wordModels[0].phonetic);
+        for (int i = 0; i < wordModels[0].phonetics.size(); i++) {
+            System.out.println(wordModels[0].phonetics.get(i).text);
+            System.out.println(wordModels[0].phonetics.get(i).audio);
+            System.out.println();
         }
 
     }

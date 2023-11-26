@@ -135,7 +135,6 @@ public class ThirdSceneController implements Initializable {
             }
 
             //Nghia
-
             for (WordModel.Meanings item : wordM[0].meanings) {
                 //dạng từ
                 Label partOfSpeech = new Label(item.getPartOfSpeech());

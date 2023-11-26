@@ -15,8 +15,9 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <Button fx:id="translate" mnemonicParsing="false" onAction="#changeScreen" prefHeight="26.0" prefWidth="73.0" stylesheets="@Style.css" text="Translate" />
-            <Button fx:id="dictionary" mnemonicParsing="false" onAction="#changeScreen2" stylesheets="@Style.css" text="Dictionary" />
+            <Button fx:id="translate" mnemonicParsing="false" onAction="#changeTranslate" prefHeight="26.0" prefWidth="73.0" stylesheets="@Style.css" text="Translate" />
+            <Button fx:id="dictionary" mnemonicParsing="false" onAction="#changeDictionary" stylesheets="@Style.css" text="Dictionary" />
+            <Button fx:id="game" mnemonicParsing="false" onAction="#changeGame" prefHeight="29.0" prefWidth="74.0" text="game" />
          </children>
       </VBox>
    </children>

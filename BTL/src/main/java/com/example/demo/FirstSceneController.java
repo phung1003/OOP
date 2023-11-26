@@ -36,6 +36,8 @@ public class FirstSceneController {
     private Button dictionary;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private Button game;
 
 
 
@@ -48,14 +50,28 @@ public class FirstSceneController {
         label.setText(" JavaFX Application!");
     }
     @FXML
-    protected void changeScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("SecondScene.fxml"));
+    protected void changeTranslate(ActionEvent event) throws IOException {
+        changeScreen("SecondScene.fxml");
+    }
 
-        Scene scene = translate.getScene();
+    @FXML
+    protected void changeDictionary(ActionEvent event) throws IOException {
+        changeScreen("ThirdScene.fxml");
+    }
+
+    @FXML
+    protected void changeGame(ActionEvent event) throws IOException {
+        changeScreen("Menu.fxml");
+
+    }
+
+    public void changeScreen(String sceneName) throws IOException {
+        Parent root = FXMLLoader.load(Main.class.getResource(sceneName));
+
+        Scene scene = anchorPane.getScene();
 
         StackPane stackPane = (StackPane) scene.getRoot();
         root.translateXProperty().set(scene.getWidth());
-        scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         stackPane.getChildren().add(root);
 
         Timeline timeline = new Timeline();
@@ -66,30 +82,6 @@ public class FirstSceneController {
             stackPane.getChildren().remove(anchorPane);
         });
         timeline.play();
-
-    }
-
-    @FXML
-    protected void changeScreen2(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("ThirdScene.fxml"));
-
-        Scene scene = dictionary.getScene();
-
-        StackPane stackPane = (StackPane) scene.getRoot();
-        root.translateXProperty().set(scene.getWidth());
-
-        scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
-        stackPane.getChildren().add(root);
-
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.2), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> {
-            stackPane.getChildren().remove(anchorPane);
-        });
-        timeline.play();
-
     }
 
 

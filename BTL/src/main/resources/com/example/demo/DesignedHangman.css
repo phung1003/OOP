@@ -1,0 +1,48 @@
+/* DesignedHangman.css */
+
+/* Cho AnchorPane */
+AnchorPane {
+    -fx-background-color: #f2f2f2; /* Màu nền */
+}
+
+/* Cho VBox */
+VBox {
+    -fx-background-color: #ffffff; /* Màu nền */
+    -fx-border-color: #3367d6; /* Màu viền xanh */
+    -fx-border-width: 2; /* Độ dày viền */
+    -fx-padding: 20; /* Độ dày đệm */
+    -fx-spacing: 5; /* Khoảng cách giữa các thành phần */
+    -fx-border-radius: 10; /* Độ cong của góc viền */
+}
+
+/* Cho Label "Word to guess" và các Label khác */
+Label {
+    -fx-font-family: ".VnArial"; /* Font chữ */
+}
+
+/* Cho HBox chứa các Button */
+HBox {
+    -fx-alignment: CENTER; /* Căn giữa nút */
+}
+
+/* Cho Button */
+Button {
+    -fx-font-size: 14; /* Kích thước chữ */
+    -fx-padding: 5 10; /* Độ dày của đệm (top, right, bottom, left) */
+    -fx-background-color: #3367d6; /* Màu nền xanh */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng */
+    -fx-font-weight: bold; /* Chữ dày */
+}
+
+Button:hover {
+    -fx-background-color: #4285f4; /* Màu nền xanh khi rê chuột vào */
+}
+
+
+/* Cho ImageView */
+#hangmanImage {
+    -fx-border-color: #3367d6; /* Màu viền xanh */
+    -fx-border-width: 2; /* Độ dày viền */
+    -fx-padding: 5; /* Độ dày đệm */
+    -fx-border-radius: 5; /* Độ cong của góc viền */
+}

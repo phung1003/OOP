@@ -1,0 +1,36 @@
+/* DesignedAnagramResult.css */
+
+/* Cho VBox */
+VBox {
+    -fx-background-color: #f2f2f2; /* Màu nền */
+    -fx-border-color: #3367d6; /* Màu viền xanh */
+    -fx-border-width: 2; /* Độ dày viền */
+    -fx-padding: 20; /* Độ dày đệm */
+    -fx-spacing: 10; /* Khoảng cách giữa các thành phần */
+    -fx-border-radius: 10; /* Độ cong của góc viền */
+}
+
+/* Cho Label "Game Result" */
+Label {
+    -fx-font-size: 22; /* Kích thước chữ */
+    -fx-font-weight: bold; /* Chữ đậm */
+    -fx-text-fill: #3367d6; /* Màu chữ xanh */
+}
+
+/* Cho HBox chứa các Button */
+HBox {
+    -fx-alignment: CENTER; /* Căn giữa nút */
+}
+
+/* Cho Button "Play again", "Back to menu", "Exit" */
+Button {
+    -fx-font-size: 14; /* Kích thước chữ */
+    -fx-padding: 10 20; /* Độ dày của đệm (top, right, bottom, left) */
+    -fx-background-color: #3367d6; /* Màu nền xanh */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng */
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+Button:hover {
+    -fx-background-color: #4285f4; /* Màu nền xanh khi rê chuột vào */
+}

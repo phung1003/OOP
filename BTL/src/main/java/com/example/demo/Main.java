@@ -20,7 +20,6 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Main.class.getResource("FirstScene.fxml"));
         stackPane.getChildren().add(root);
         Scene scene = new Scene(stackPane);
-      //  scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         stage.setScene(scene);
         stage.setMinWidth(700);
         stage.setMinHeight(500);

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignedAnagramGame.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testchangescene.AnagramGameController">
+    <children>
+        <VBox alignment="CENTER" layoutX="41.0" layoutY="28.0" prefHeight="345.0" prefWidth="518.0" spacing="40.0">
+            <children>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="518.0" spacing="120.0">
+               <children>
+                  <Label fx:id="timerLabel" alignment="CENTER" prefHeight="40.0" prefWidth="130.0" text="01:00" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@IconImage/hourglass.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="scoreLabel" prefHeight="40.0" prefWidth="130.0" text="Score: 0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@IconImage/game.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Label>
+               </children>
+            </HBox>
+                <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="60.0" prefWidth="459.0" spacing="10">
+                    <!-- Your buttons will be loaded here -->
+                </HBox>
+            <VBox alignment="CENTER" prefHeight="83.0" prefWidth="460.0" spacing="15.0">
+               <children>
+                  <Text fx:id="selectedLettersText" textAlignment="CENTER" wrappingWidth="460.0">
+                     <font>
+                        <Font name=".VnArial" size="40.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="CENTER" onAction="#resetGame" prefHeight="37.0" prefWidth="47.0" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@IconImage/refresh.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

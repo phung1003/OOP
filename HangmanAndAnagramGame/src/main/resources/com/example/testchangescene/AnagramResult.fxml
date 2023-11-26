@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignedAnagramResult.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testchangescene.AnagramResultController">
+   <children>
+      <VBox alignment="CENTER" layoutX="78.0" layoutY="31.0" prefHeight="295.0" prefWidth="445.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="161.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@IconImage/game-over.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="resultLabel" prefHeight="55.0" prefWidth="444.0" text="Label" />
+            <Label fx:id="score" prefHeight="55.0" prefWidth="447.0" text="Label" />
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="390.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#playAgain" prefHeight="35.0" prefWidth="140.0" text="Play again" />
+                  <Button mnemonicParsing="false" onAction="#backToMenu" prefHeight="40.0" prefWidth="150.0" text="Back to menu" />
+                  <Button mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="140.0" text="Exit" />
+               </children>
+            </HBox>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </VBox>
+   </children>
+</AnchorPane>

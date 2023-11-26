@@ -1,7 +1,6 @@
 from googletrans import Translator
 from flask import Flask, render_template, request, json, session, jsonify
 import requests
-
  
 translator = Translator()
 

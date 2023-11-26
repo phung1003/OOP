@@ -1,6 +1,5 @@
 package com.example.demo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.Nulls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +67,92 @@ public class WordModel {
                 ", phonetics=" + phonetics +
                 ", meanings=" + meanings +
                 '}';
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Phonetics {
+        String audio = "null";
+        String text;
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public String getAudio() {
+            return audio;
+        }
+
+        public void setAudio(String audio) {
+            this.audio = audio;
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+
+    public static class Definitions {
+        String definition;
+        String example;
+
+        public String getDefinition() {
+            return definition;
+        }
+
+        public void setDefinition(String definition) {
+            this.definition = definition;
+        }
+
+        public String getExample() {
+            return example;
+        }
+
+        public void setExample(String example) {
+            this.example = example;
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+
+    public static class Meanings {
+        String partOfSpeech;
+        List<String> synonyms = new ArrayList<String>();
+        List<String> antonyms = new ArrayList<String>();
+        List<Definitions> definitions = new ArrayList<Definitions>();
+
+        public String getPartOfSpeech() {
+            return partOfSpeech;
+        }
+
+        public void setPartOfSpeech(String partOfSpeech) {
+            this.partOfSpeech = partOfSpeech;
+        }
+
+        public List<String> getSynonyms() {
+            return synonyms;
+        }
+
+        public void setSynonyms(List<String> synonyms) {
+            this.synonyms = synonyms;
+        }
+
+        public List<String> getAntonyms() {
+            return antonyms;
+        }
+
+        public void setAntonyms(List<String> antonyms) {
+            this.antonyms = antonyms;
+        }
+
+        public List<Definitions> getDefinitions() {
+            return definitions;
+        }
+
+        public void setDefinitions(List<Definitions> definitions) {
+            this.definitions = definitions;
+        }
     }
 }
 

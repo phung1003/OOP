@@ -1,16 +1,38 @@
-#translate {
-    -fx-background-color: blue;
-    -fx-border-color: red;
-    -fx-animated: auto;
-}
 
 #dictionary {
     -fx-background-color: red;
 }
 
-.label {
-    -fx-background-color: yellow;
+#translate{
+    -fx-background-color:  #2e72d9;
 }
+#translate:hover {
+    -fx-background-color: #175bfa;
+
+}
+
+.text-area {
+    -fx-border-color: #0583e3;
+
+
+
+
+}
+
+
+.text-area .content {
+    -fx-background-color: white;
+    -fx-background-radius: 0 ;
+
+}
+
+
+#scrollPane >.viewport {
+    -fx-background-color: white;
+}
+
+
+
 
 
 

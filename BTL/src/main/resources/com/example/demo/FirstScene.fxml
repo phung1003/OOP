@@ -10,9 +10,9 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="986.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.FirstSceneController">
    <children>
-      <VBox alignment="CENTER" prefHeight="593.0" prefWidth="982.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="593.0" prefWidth="966.0" spacing="10.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <ImageView fitHeight="219.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="202.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/dictionary.png" />
                </image>
@@ -22,9 +22,42 @@
                   <Font name="Comic Sans MS Bold" size="34.0" />
                </font>
             </Label>
-            <Button fx:id="translate" mnemonicParsing="false" onAction="#changeTranslate" prefHeight="58.0" prefWidth="191.0" stylesheets="@DesignedMenu.css" text="Translate" />
-            <Button fx:id="dictionary" mnemonicParsing="false" onAction="#changeDictionary" prefHeight="56.0" prefWidth="191.0" stylesheets="@DesignedMenu.css" text="Dictionary" />
-            <Button fx:id="game" mnemonicParsing="false" onAction="#changeGame" prefHeight="60.0" prefWidth="193.0" stylesheets="@DesignedMenu.css" text="Game" />
+            <Button fx:id="translate" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#changeTranslate" prefHeight="77.0" prefWidth="223.0" stylesheets="@DesignedMenu.css" text="Translate">
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/translate.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="dictionary" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#changeDictionary" prefHeight="77.0" prefWidth="223.0" stylesheets="@DesignedMenu.css" text="Dictionary">
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/apisearch.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="dictionaryDB" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#changeDB" prefHeight="77.0" prefWidth="223.0" stylesheets="@DesignedMenu.css" text="Dictionary (Database)">
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/apisearch.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="game" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#changeGame" prefHeight="77.0" prefWidth="223.0" stylesheets="@DesignedMenu.css" text="Game" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/game.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </children>

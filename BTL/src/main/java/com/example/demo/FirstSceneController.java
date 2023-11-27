@@ -38,6 +38,8 @@ public class FirstSceneController {
     private AnchorPane anchorPane;
     @FXML
     private Button game;
+    @FXML
+    private Button dictionaryDB;
 
 
 
@@ -63,6 +65,11 @@ public class FirstSceneController {
     protected void changeGame(ActionEvent event) throws IOException {
         changeScreen("Menu.fxml");
 
+    }
+
+    @FXML
+    protected void changeDB(ActionEvent event) throws IOException {
+        changeScreen("word_search.fxml");
     }
 
     public void changeScreen(String sceneName) throws IOException {

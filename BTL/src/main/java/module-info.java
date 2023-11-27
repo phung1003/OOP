@@ -13,6 +13,8 @@ module com.example.demo {
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
     requires javafx.media;
+    requires java.sql;
+
 
 
     opens com.example.demo to javafx.fxml;

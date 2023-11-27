@@ -1,18 +1,20 @@
-package com.example.testchangescene;
+package com.example.demo;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -34,6 +36,11 @@ public class AnagramGameController implements Initializable {
 
     @FXML
     private Text selectedLettersText;
+
+    @FXML
+    private Button resetGame;
+    @FXML
+    private AnchorPane anchorPane;
 
     private String originalWord;
     private List<Button> letterButtons = new ArrayList<>();
@@ -187,13 +194,38 @@ public class AnagramGameController implements Initializable {
             timerLabel.setText(timerText);
         } else {
             timeline.stop();
-            showResultScreen();
+            try {
+                showResultScreen();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             setScore(0);
         }
     }
 
-    private void showResultScreen() {
+    private void showResultScreen() throws IOException {
         // Gọi SceneManager để chuyển đến màn hình kết quả và truyền điểm số
-        SceneManager.switchToAnagramResultScene("Time up !", score, this);
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("AnagramResult.fxml"));
+        Parent root = loader.load();
+
+        AnagramResultController controller = loader.getController();
+        controller.setResult("Time up!");
+        controller.setScore(score);
+
+        Scene scene = anchorPane.getScene();
+
+        StackPane stackPane = (StackPane) scene.getRoot();
+        root.translateXProperty().set(scene.getWidth());
+        stackPane.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.25), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setOnFinished(event1 -> {
+            stackPane.getChildren().remove(anchorPane);
+        });
+        timeline.play();
     }
 }

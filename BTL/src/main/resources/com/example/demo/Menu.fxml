@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignedMenu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testchangescene.MainMenuController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@DesignedMenu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainMenuController">
    <children>
        <VBox alignment="CENTER" layoutX="182.0" layoutY="49.0" prefHeight="112.0" prefWidth="237.0" spacing="25.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="49.0">
           <children>
@@ -15,7 +15,7 @@
                   <Image url="@IconImage/gaming.png" />
                </image>
             </ImageView>
-              <Button alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#switchToScene1" prefHeight="22.0" prefWidth="237.0" text="    Anagram Game" textAlignment="RIGHT">
+              <Button fx:id="switchToScene1Button" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#switchToScene1" prefHeight="22.0" prefWidth="237.0" text="    Anagram Game" textAlignment="RIGHT">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -23,7 +23,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-              <Button alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#switchToScene2" prefHeight="26.0" prefWidth="237.0" text="    Hangman Game">
+              <Button fx:id="switchToScene2Button" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#switchToScene2" prefHeight="26.0" prefWidth="237.0" text="    Hangman Game">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>

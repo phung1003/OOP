@@ -1,0 +1,24 @@
+/* style.css */
+
+/* Cho AnchorPane */
+.anchor-pane {
+    -fx-background-color: #ffffff; /* Màu nền trắng */
+}
+
+/* Cho VBox */
+.v-box {
+    -fx-spacing: 20; /* Khoảng cách giữa các thành phần */
+}
+
+/* Cho Button */
+.button {
+    -fx-font-size: 14; /* Kích thước chữ */
+    -fx-padding: 10 20; /* Độ dày của đệm (top, right, bottom, left) */
+    -fx-background-color: #3367d6; /* Màu nền xanh */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng */
+    -fx-font-weight: bold; /* Chữ dày */
+}
+
+.button:hover {
+    -fx-background-color: #4285f4; /* Màu nền xanh khi rê chuột vào */
+}

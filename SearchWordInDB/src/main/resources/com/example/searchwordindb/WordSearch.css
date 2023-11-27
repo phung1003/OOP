@@ -1,0 +1,46 @@
+
+
+/* Áp dụng cho AnchorPane chính */
+#StyledAnchorPane {
+    -fx-background-color: #f0f0f0; /* Màu nền xám nhạt */
+}
+
+/* Áp dụng cho TextField */
+#searchField {
+    -fx-background-color: #ffffff; /* Màu nền trắng */
+    -fx-border-color: #00bfff; /* Màu viền xanh da trời */
+    -fx-border-width: 1; /* Độ rộng viền */
+    -fx-effect: dropshadow( gaussian , rgba(170,170,170,0.8) , 3,0,3,3 ); /* Hiệu ứng nổi lên */
+}
+
+/* Áp dụng cho TextArea */
+#wordTargetDefinition {
+    -fx-background-color: #ffffff; /* Màu nền trắng */
+    -fx-border-color: #00bfff; /* Màu viền xám */
+    -fx-border-width: 1; /* Độ rộng viền */
+    -fx-effect: dropshadow(gaussian, rgba(128, 128, 128, 0.8), 3, 0, 3, 3); /* Hiệu ứng nổi lên với màu xám */
+
+    /* Ẩn nền thanh trượt và nút mũi tên */
+    -fx-background: transparent; /* Ẩn nền thanh trượt */
+}
+
+
+/* Áp dụng cho ListView */
+#suggestionList {
+    -fx-background-color: #ffffff; /* Màu nền trắng */
+    //-fx-border-color: #00bfff; /* Màu viền xanh da trời */
+    -fx-border-width: 1; /* Độ rộng viền */
+    -fx-effect: dropshadow(gaussian, rgba(128, 128, 128, 0.8), 3, 0, 3, 3); /* Hiệu ứng nổi lên với màu xám */
+}
+
+.button {
+    -fx-font-size: 10; /* Kích thước chữ */
+    -fx-padding: 5 10; /* Độ dày của đệm (top, right, bottom, left) */
+    -fx-background-color: #3367d6; /* Màu nền xanh */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng */
+    -fx-font-weight: bold; /* Chữ dày */
+}
+
+.button:hover {
+    -fx-background-color: #4285f4; /* Màu nền xanh khi rê chuột vào */
+}

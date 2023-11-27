@@ -12,7 +12,7 @@
 
 /* Cho Button */
 .button {
-    -fx-font-size: 14; /* Kích thước chữ */
+    -fx-font-size: 20; /* Kích thước chữ */
     -fx-padding: 10 20; /* Độ dày của đệm (top, right, bottom, left) */
     -fx-background-color: #3367d6; /* Màu nền xanh */
     -fx-text-fill: #ffffff; /* Màu chữ trắng */

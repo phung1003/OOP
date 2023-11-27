@@ -55,12 +55,12 @@
       </GridPane>
       <Label fx:id="s" layoutX="10.0" layoutY="149.0" text="English" AnchorPane.leftAnchor="10.0">
          <font>
-            <Font size="18.0" />
+            <Font name="Comic Sans MS Bold" size="18.0" />
          </font>
       </Label>
       <Label fx:id="d" layoutX="470.0" layoutY="149.0" text="Vietnamese" AnchorPane.rightAnchor="10.5">
          <font>
-            <Font size="18.0" />
+            <Font name="Comic Sans MS Bold" size="18.0" />
          </font>
       </Label>
    </children>

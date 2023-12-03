@@ -1,19 +1,8 @@
 package com.example.demo;
 
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -24,13 +13,6 @@ public class AnagramResultController extends ResultGameController{
     @FXML
     private Label score;
 
-
-
-
-
-    public void initialize() {
-        // Initialize your controller, if needed
-    }
 
     public void setResult(String result) {
         resultLabel.setText(result);
@@ -43,7 +25,7 @@ public class AnagramResultController extends ResultGameController{
     @FXML
     public void backToMenu() {
         try {
-            switchScene("Menu.fxml");
+            switchScene("Menu.fxml", up);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +34,7 @@ public class AnagramResultController extends ResultGameController{
     @FXML
     public void playAgain() {
         try {
-            switchScene("AnagramGame.fxml");
+            switchScene("AnagramGame.fxml", up);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

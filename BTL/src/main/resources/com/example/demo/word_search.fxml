@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -8,33 +9,38 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="598.0" style="-fx-background-color: white;" stylesheets="@WordSearch.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.WordSearchController">
+<AnchorPane fx:id="anchorPane" prefHeight="451.0" prefWidth="634.0" style="-fx-background-color: white;" stylesheets="@WordSearch.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.WordSearchController">
    <children>
+      <TextArea fx:id="wordTargetDefinition" editable="false" layoutX="82.0" layoutY="191.0" prefHeight="182.0" prefWidth="446.0" style="-fx-background-color: null;" wrapText="true" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="191.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="-80.0" />
+         </padding>
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextArea>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="45.0">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../SearchWordInDB/src/main/resources/com/example/searchwordindb/left-chevron.png" />
+                  <Image url="@image/back.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <HBox alignment="TOP_CENTER" layoutX="82.0" layoutY="54.0" prefHeight="332.0" prefWidth="495.0" spacing="5.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="54.0">
+      <HBox alignment="TOP_CENTER" layoutX="82.0" layoutY="54.0" prefHeight="39.0" prefWidth="699.0" spacing="5.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="23.0">
          <children>
-            <VBox prefHeight="189.0" prefWidth="428.0" HBox.hgrow="SOMETIMES">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="134.0" prefWidth="428.0" VBox.vgrow="NEVER">
-                     <children>
-                  
-                                                        <TextField fx:id="searchField" prefHeight="37.0" prefWidth="428.0" />
-                          <ListView fx:id="suggestionList" prefHeight="94.0" prefWidth="428.0" />
-                     </children>
-                  </VBox>
-                  <TextArea fx:id="wordTargetDefinition" prefHeight="182.0" prefWidth="428.0" wrapText="true" VBox.vgrow="SOMETIMES" />
-               </children>
-            </VBox>
+      
+                                                                    <TextField fx:id="searchField" prefHeight="37.0" prefWidth="428.0" HBox.hgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
             <Button fx:id="lookUpButton" mnemonicParsing="false" onAction="#handleLookUpButtonSearch" prefHeight="33.0" prefWidth="34.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
@@ -46,5 +52,15 @@
             </Button>
          </children>
       </HBox>
+      <Button layoutX="533.0" layoutY="14.0" mnemonicParsing="false" onAction="#toFixScene" prefHeight="30.0" prefWidth="45.0" AnchorPane.rightAnchor="23.0">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/fix.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+        <ListView fx:id="suggestionList" editable="true" layoutX="82.0" layoutY="93.0" prefHeight="138.0" prefWidth="479.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="93.0" />
    </children>
 </AnchorPane>

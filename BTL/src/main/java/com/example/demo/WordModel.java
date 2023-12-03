@@ -1,8 +1,7 @@
 package com.example.demo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javafx.scene.text.Font;
 
-import java.awt.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +59,8 @@ public class WordModel {
         }
         phonetics = newList;
     }
+
+
 
     @Override
     public String toString() {

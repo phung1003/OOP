@@ -1,19 +1,18 @@
 package com.example.demo;
 
-import javafx.animation.*;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class HangmanController implements Initializable {
+public class HangmanController extends SceneController implements Initializable {
     private Map<Integer, String> wordMap = new HashMap<>();
     private String wordToGuess;
     @FXML
@@ -39,36 +38,13 @@ public class HangmanController implements Initializable {
     private HBox hBox2;
     @FXML
     private HBox hBox3;
-    @FXML
-    private AnchorPane anchorPane;
 
-    private void enableAllButtonsInHBox() {
-        for (javafx.scene.Node node : hBox1.getChildren()) {
-            if (node instanceof Button) {
-                Button button = (Button) node;
-                button.setDisable(false);
-            }
-        }
 
-        for (javafx.scene.Node node : hBox2.getChildren()) {
-            if (node instanceof Button) {
-                Button button = (Button) node;
-                button.setDisable(false);
-            }
-        }
-
-        for (javafx.scene.Node node : hBox3.getChildren()) {
-            if (node instanceof Button) {
-                Button button = (Button) node;
-                button.setDisable(false);
-            }
-        }
-    }
 
     private void setWordMap() {
         int wordCount = 0;
 
-        List<String> words = null;
+        List<String> words;
         try {
             String filename="HangmanAndAnagramGame/WordsForGameUpperCase.txt";
             Path pathToFile = Paths.get(filename);
@@ -200,18 +176,16 @@ public class HangmanController implements Initializable {
         controller.setGuessedWord(wordToGuess);
 
         Scene scene = anchorPane.getScene();
-
         StackPane stackPane = (StackPane) scene.getRoot();
-        root.translateXProperty().set(scene.getWidth());
         stackPane.getChildren().add(root);
 
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.25), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> {
-            stackPane.getChildren().remove(anchorPane);
-        });
-        timeline.play();
+        playAnimation(left, root, scene, stackPane);
+
+
+    }
+
+    @FXML
+    public void Back() throws IOException {
+        switchScene("Menu.fxml", right);
     }
 }

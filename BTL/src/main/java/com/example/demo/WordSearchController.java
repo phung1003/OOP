@@ -1,83 +1,47 @@
 package com.example.demo;
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.TextFlow;
-import javafx.util.Duration;
+import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class WordSearchController implements Initializable{
+public class WordSearchController extends SceneController implements Initializable{
+
+    protected static final String url = "jdbc:mysql://localhost:3306/OOP";
+    protected static final String username = "root";
+    protected static final String password = "vttp1003";
 
     @FXML
-    private TextField searchField;
+    protected TextField searchField;
 
     @FXML
     private Button lookUpButton;
 
     @FXML
-    private ListView<String> suggestionList;
+    protected ListView<String> suggestionList;
 
     @FXML
-    private TextArea wordTargetDefinition;
-
-    @FXML
-    private AnchorPane anchorPane;
-
-//    @FXML
-//    private TextFlow wordTargetDefinition;
+    protected TextArea wordTargetDefinition;
 
     @FXML
     private Button backButton;
 
-    public SortedMap<String, Word> wordMap = new TreeMap<String, Word>();
+    protected static SortedMap<String, Word> wordMap = new TreeMap<String, Word>();
     private static final int MAX_SUGGESTIONS = 50;
 
-    public void initialize() {
-        insertFromSQL();
-        suggestionList.setVisible(false);  // Ẩn ListView khi không có từ gợi ý
-
-        // Xử lý sự kiện khi người dùng nhập vào ô tìm kiếm
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateSuggestions(newValue);
-        });
-
-        suggestionList.setOnMouseClicked(event -> {
-            String selectedWord = suggestionList.getSelectionModel().getSelectedItem();
-            if (selectedWord != null) {
-                searchField.setText(selectedWord);
-                suggestionList.setVisible(false);  // Ẩn ListView sau khi chọn từ
-                wordTargetDefinition.setText(dictionaryLookup(selectedWord)); // Đặt văn bản cho textArea
-            }
-        });
-    }
-
     public void insertFromSQL(){
-        String url = "jdbc:mysql://localhost:3306/OOP";
-        String username = "root";
-        String password = "vttp1003";
-
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
@@ -160,27 +124,47 @@ public class WordSearchController implements Initializable{
 
     @FXML
     private void back() throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("FirstScene.fxml"));
+        switchScene("FirstScene.fxml", right);
+    }
 
-        Scene scene = anchorPane.getScene();
-
-        StackPane stackPane = (StackPane) scene.getRoot();
-        root.translateXProperty().set(-scene.getWidth());
-
-        stackPane.getChildren().add(root);
-
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.25), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> {
-            stackPane.getChildren().remove(anchorPane);
-        });
-        timeline.play();
+    @FXML
+    private void toFixScene() throws IOException {
+        switchScene("AddUpdateRemove.fxml", left);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initialize();
+        init();
+    }
+
+    protected void init() {
+        if (wordMap.isEmpty()) {
+            insertFromSQL();
+        }
+        
+        suggestionList.setVisible(false);  // Ẩn ListView khi không có từ gợi ý
+        suggestionList.setPickOnBounds(false);
+        // Xử lý sự kiện khi người dùng nhập vào ô tìm kiếm
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateSuggestions(newValue);
+        });
+
+        anchorPane.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                String keyWord = searchField.getText();
+                String definition = dictionaryLookup(keyWord);
+                wordTargetDefinition.setText(definition);
+                suggestionList.setVisible(false);
+            }
+        });
+
+        suggestionList.setOnMouseClicked(event -> {
+            String selectedWord = suggestionList.getSelectionModel().getSelectedItem();
+            if (selectedWord != null) {
+                searchField.setText(selectedWord);
+                suggestionList.setVisible(false);  // Ẩn ListView sau khi chọn từ
+                wordTargetDefinition.setText(dictionaryLookup(selectedWord)); // Đặt văn bản cho textArea
+            }
+        });
     }
 }

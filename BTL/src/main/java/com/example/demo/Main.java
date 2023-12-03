@@ -2,14 +2,10 @@ package com.example.demo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.swing.text.Position;
 
 
 public class Main extends Application {
@@ -21,8 +17,8 @@ public class Main extends Application {
         stackPane.getChildren().add(root);
         Scene scene = new Scene(stackPane);
         stage.setScene(scene);
-        stage.setMinWidth(700);
-        stage.setMinHeight(500);
+        stage.setMinWidth(800);
+        stage.setMinHeight(700);
         stage.show();
     }
 

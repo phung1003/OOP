@@ -1,33 +1,22 @@
 package com.example.demo;
 
 
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class SecondSceneController {
-    private Scene scene;
-    private Stage stage;
-
-
+public class SecondSceneController extends SceneController implements Initializable {
     @FXML
     private TextArea source;
     @FXML
@@ -37,48 +26,69 @@ public class SecondSceneController {
     @FXML
     private Label d;
     @FXML
-    private AnchorPane anchorPane;
+    private ImageView sFlag;
     @FXML
-    private Button back;
+    private ImageView dFlag;
 
     @FXML
     public void Translate() throws IOException {
-        if (s.getText().equals("English")) {
-            des.setText(Json.callTranslate(source.getText(), true));
+        Trans();
+    }
+
+    public void Trans() throws IOException {
+        if (source.getText().isEmpty()) {
+            des.setText("");
         } else {
-            des.setText(Json.callTranslate(source.getText(), false));
+            if (s.getText().equals("English")) {
+                des.setText(Json.callTranslate(source.getText(), true));
+            } else {
+                des.setText(Json.callTranslate(source.getText(), false));
+            }
         }
+
     }
 
     @FXML
     public void Change() throws IOException {
+        //Đổi tiêu đề
         String temp = s.getText();
         s.setText(d.getText());
         d.setText(temp);
+
+        //Đổi ảnh
+        Image image = sFlag.getImage();
+        sFlag.setImage(dFlag.getImage());
+        dFlag.setImage(image);
+
+        //Đổi nội dung
+        temp = des.getText();
+        des.setText(source.getText());
+        source.setText(temp);
+        Trans();
     }
 
 
     @FXML
-    public void Back(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Main.class.getResource("FirstScene.fxml"));
-
-        Scene scene = back.getScene();
-
-        StackPane stackPane = (StackPane) scene.getRoot();
-        root.translateXProperty().set(-scene.getWidth());
-
-        scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
-        stackPane.getChildren().add(root);
-
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.25), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> {
-            stackPane.getChildren().remove(anchorPane);
-        });
-        timeline.play();
+    public void Back() throws IOException {
+        switchScene("FirstScene.fxml", right);
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+            try {
+                System.out.println(source.getText());
+                Trans();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }));
+        timeline.setCycleCount(1);
+        source.setOnKeyTyped(event -> {
+            timeline.stop();
+            timeline.playFromStart();
+        });
+
+    }
 }

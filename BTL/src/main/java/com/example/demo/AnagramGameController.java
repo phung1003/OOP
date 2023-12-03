@@ -1,23 +1,23 @@
 package com.example.demo;
 
-import javafx.animation.*;
-import javafx.application.Platform;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class AnagramGameController implements Initializable {
+public class AnagramGameController extends SceneController implements Initializable {
     @FXML
     private Label timerLabel;
     private int secondsRemaining = 60;
@@ -36,11 +36,6 @@ public class AnagramGameController implements Initializable {
 
     @FXML
     private Text selectedLettersText;
-
-    @FXML
-    private Button resetGame;
-    @FXML
-    private AnchorPane anchorPane;
 
     private String originalWord;
     private List<Button> letterButtons = new ArrayList<>();
@@ -53,7 +48,7 @@ public class AnagramGameController implements Initializable {
     private void setWordMap() {
         int wordCount = 0;
 
-        List<String> words = null;
+        List<String> words;
         try {
             words = Files.readAllLines(Paths.get("HangmanAndAnagramGame/WordsForGameUpperCase.txt"));
         } catch (IOException e) {
@@ -90,7 +85,7 @@ public class AnagramGameController implements Initializable {
     }
 
     private void updateScoreLabel() {
-        scoreLabel.setText("Socre: " + score);
+        scoreLabel.setText("Score: " + score);
     }
 
     private String generateRandomWord() {
@@ -100,9 +95,7 @@ public class AnagramGameController implements Initializable {
         System.out.println(wordMap.get(randomIndex));
         System.out.println("Random Integer: " + randomIndex);
 
-        String words = wordMap.get(randomIndex);
-
-        return words;
+        return wordMap.get(randomIndex);
     }
 
     private List<Character> shuffleWord(String word) {
@@ -155,24 +148,29 @@ public class AnagramGameController implements Initializable {
             selectedLettersText.setFill(Color.GREEN); // Đoán đúng thì chuyển sang màu xanh
             score += 10;
             updateScoreLabel();
-
-            PauseTransition pause = new PauseTransition(Duration.seconds(1));
-
-            // Xử lý sự kiện sau khi thời gian đợi kết thúc
-            pause.setOnFinished(event -> {
-                // Thực hiện các hành động bạn muốn sau khi đợi
-                buttonBox.getChildren().clear();
-                selectedLettersText.setText("");
-                selectedLettersText.setFill(Color.BLACK); // Trả về màu mặc định
-
-                originalWord = generateRandomWord();
-                List<Character> shuffledCharacters = shuffleWord(originalWord);
-
-                createButtonBox(shuffledCharacters);
-            });
+            PauseTransition pause = getPauseTransition();
             // Bắt đầu PauseTransition
             pause.play();
         }
+    }
+
+
+    private PauseTransition getPauseTransition() {
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+
+        // Xử lý sự kiện sau khi thời gian đợi kết thúc
+        pause.setOnFinished(event -> {
+            // Thực hiện các hành động bạn muốn sau khi đợi
+            buttonBox.getChildren().clear();
+            selectedLettersText.setText("");
+            selectedLettersText.setFill(Color.BLACK); // Trả về màu mặc định
+
+            originalWord = generateRandomWord();
+            List<Character> shuffledCharacters = shuffleWord(originalWord);
+
+            createButtonBox(shuffledCharacters);
+        });
+        return pause;
     }
 
     @FXML
@@ -210,22 +208,21 @@ public class AnagramGameController implements Initializable {
         Parent root = loader.load();
 
         AnagramResultController controller = loader.getController();
+
         controller.setResult("Time up!");
         controller.setScore(score);
 
         Scene scene = anchorPane.getScene();
-
         StackPane stackPane = (StackPane) scene.getRoot();
         root.translateXProperty().set(scene.getWidth());
         stackPane.getChildren().add(root);
 
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.25), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> {
-            stackPane.getChildren().remove(anchorPane);
-        });
-        timeline.play();
+        playAnimation(left, root, scene, stackPane);
+    }
+
+    @FXML
+    public void Back() throws IOException {
+        this.timeline.stop();
+        switchScene("Menu.fxml", right);
     }
 }

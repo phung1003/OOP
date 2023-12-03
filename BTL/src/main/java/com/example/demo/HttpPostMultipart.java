@@ -3,9 +3,6 @@ package com.example.demo;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.UUID;
 
 public class HttpPostMultipart {
@@ -16,14 +13,7 @@ public class HttpPostMultipart {
     private OutputStream outputStream;
     private PrintWriter writer;
 
-    /**
-     * This constructor initializes a new HTTP POST request with content type
-     * is set to multipart/form-data
-     *
-     * @param requestURL
-     * @param charset
-     * @throws IOException
-     */
+
     public HttpPostMultipart(String requestURL, String charset) throws IOException {
         this.charset = charset;
         boundary = UUID.randomUUID().toString();
@@ -53,13 +43,7 @@ public class HttpPostMultipart {
     }
 
 
-    /**
-     * Completes the request and receives response from the server.
-     *
-     * @return String as response in case the server returned
-     * status OK, otherwise an exception is thrown.
-     * @throws IOException
-     */
+
     public String finish() throws IOException {
         String response = "";
         writer.flush();

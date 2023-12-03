@@ -27,9 +27,8 @@ public class Json {
 
 
             /* parse json*/
-            WordModel[] wordModels = objectMapper.readValue(String.valueOf(s), new TypeReference<WordModel[]>() {
+            return objectMapper.readValue(String.valueOf(s), new TypeReference<WordModel[]>() {
             });
-            return wordModels;
 
         } else {
             System.out.println("CALL API ERROR " + responseCode);
@@ -38,6 +37,7 @@ public class Json {
         }
 
     }
+
 
 //    public static String callTranslate(String text, boolean type) throws IOException {
 //        //dịch từ anh sang việt
@@ -89,28 +89,17 @@ public class Json {
 //        }
 //    }
     public static String callTranslate(String text, boolean type) throws IOException {
+        HttpPostMultipart multipart;
         if (type) {
-            HttpPostMultipart multipart = new HttpPostMultipart("http://127.0.0.1:5000/entovi", "utf-8");
+            multipart = new HttpPostMultipart("http://127.0.0.1:5000/entovi", "utf-8");
             multipart.addFormField("en", text);
-            return multipart.finish();
         } else {
-            HttpPostMultipart multipart = new HttpPostMultipart("http://127.0.0.1:5000/vitoen", "utf-8");
+            multipart = new HttpPostMultipart("http://127.0.0.1:5000/vitoen", "utf-8");
             multipart.addFormField("vi", text);
-            return multipart.finish();
         }
+        return multipart.finish();
 
     }
 
-    public static void main(String[] args) throws IOException {
-        WordModel[] wordModels = Json.callApi("dog");
-        wordModels[0].removeDuplicates();
-        System.out.println(wordModels[0].phonetic);
-        for (int i = 0; i < wordModels[0].phonetics.size(); i++) {
-            System.out.println(wordModels[0].phonetics.get(i).text);
-            System.out.println(wordModels[0].phonetics.get(i).audio);
-            System.out.println();
-        }
-
-    }
 
 }

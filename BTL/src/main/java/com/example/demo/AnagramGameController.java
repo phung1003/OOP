@@ -50,7 +50,7 @@ public class AnagramGameController extends SceneController implements Initializa
 
         List<String> words;
         try {
-            words = Files.readAllLines(Paths.get("HangmanAndAnagramGame/WordsForGameUpperCase.txt"));
+            words = Files.readAllLines(Paths.get("WordsForGameUpperCase.txt"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

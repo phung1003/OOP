@@ -46,7 +46,7 @@ public class HangmanController extends SceneController implements Initializable 
 
         List<String> words;
         try {
-            String filename="HangmanAndAnagramGame/WordsForGameUpperCase.txt";
+            String filename="WordsForGameUpperCase.txt";
             Path pathToFile = Paths.get(filename);
             System.out.println(pathToFile.toAbsolutePath());
 

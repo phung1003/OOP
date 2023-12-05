@@ -119,6 +119,7 @@ public class AddUpdateRemoveNewController extends WordSearchController implement
                 // Thực hiện truy vấn SELECT
                 try (ResultSet resultSet = checkExistenceStatement.executeQuery()) {
                     if (resultSet.next() && resultSet.getInt("count") > 0) {
+                        notifyImg.setImage(new Image(getClass().getResource("image/unchecked.png").toURI().toString()));
                         // Target đã tồn tại, in ra thông báo
                         notification.setText("The word '" + target + "' already exists. Cannot add new.");
                         System.out.println("The word '" + target + "' already exists. Cannot add new.");
@@ -161,6 +162,8 @@ public class AddUpdateRemoveNewController extends WordSearchController implement
                         }
                     }
                     pane.setVisible(true);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
                 }
             }
 
